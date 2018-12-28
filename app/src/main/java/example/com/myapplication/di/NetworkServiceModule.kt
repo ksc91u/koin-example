@@ -8,7 +8,8 @@ import retrofit2.http.GET
 
 
 val networkServiceModule = module {
-    single { NetworkServiceRepositoryImpl(get(name = "retrofit")).giveNetworkService() }
+    single { NetworkServiceRepositoryImpl(get(name = "retrofit")) }
+    single { get<NetworkServiceRepositoryImpl>().giveNetworkService() }
 }
 
 interface NetworkServiceRepository {
