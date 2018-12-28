@@ -10,4 +10,8 @@ class MainViewModel(private val networkService: NetworkService) : ViewModel() {
         //main
         networkService.getVersion().await()
     }
+
+    protected fun finalize() {
+        println(">>>> MainViewModel gc")
+    }
 }
