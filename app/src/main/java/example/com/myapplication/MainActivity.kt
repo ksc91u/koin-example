@@ -1,20 +1,19 @@
 package example.com.myapplication
 
 import android.os.Bundle
-import example.com.myapplication.di.NetworkService
 import kotlinx.coroutines.launch
-import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : BaseActivity() {
 
-    private val networkService: NetworkService by inject()
+    private val mainViewModel: MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         launch {
-            val version = networkService.getVersion().await()
+            val version = mainViewModel.getVersion()
             log(">>>> result $version")
         }
 
