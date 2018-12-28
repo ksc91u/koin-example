@@ -9,8 +9,9 @@ import java.util.concurrent.TimeUnit
 
 
 val retrofitModule = module {
-    single { RetrofitRepositoryImpl().giveOkHttp() }
-    single(name = "retrofit") { RetrofitRepositoryImpl().giveRetrofit(get()) }
+    single { RetrofitRepositoryImpl() }
+    single { get<RetrofitRepositoryImpl>().giveOkHttp() }
+    single(name = "retrofit") { get<RetrofitRepositoryImpl>().giveRetrofit(get()) }
 }
 
 interface RetrofitRepository {
