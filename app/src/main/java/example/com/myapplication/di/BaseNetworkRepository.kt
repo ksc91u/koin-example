@@ -13,20 +13,23 @@ import kotlinx.android.parcel.Parcelize
 
 interface BaseNetworkRepository {
     fun giveOkHttp(): OkHttpClient
-    fun giveRetrofit(): Retrofit
+    fun giveRetrofit(okHttpClient: OkHttpClient): Retrofit
 }
 
 class BaseNetworkRepositoryImpl() : BaseNetworkRepository {
 
-    override fun giveRetrofit(): Retrofit {
+    override fun giveRetrofit(okHttpClient: OkHttpClient): Retrofit {
+        println(">>> giveRetrofit")
         return Retrofit.Builder()
             .baseUrl("https://demo5730615.mockable.io/")
+            .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
     }
 
     override fun giveOkHttp(): OkHttpClient {
+        println(">>> giveOkHttp")
         return OkHttpClient.Builder()
             .connectTimeout(10, TimeUnit.SECONDS)
             .readTimeout(20, TimeUnit.SECONDS)
@@ -40,9 +43,11 @@ interface NetworkServiceRepository {
     fun giveNetworkService(): NetworkService
 }
 
-class NetworkServiceRepositoryImpl(val base : BaseNetworkRepository) : NetworkServiceRepository {
+class NetworkServiceRepositoryImpl(val retrofit: Retrofit) : NetworkServiceRepository {
+
     override fun giveNetworkService(): NetworkService {
-        return base.giveRetrofit().create(NetworkService::class.java)
+        println(">>> giveNetworkService")
+        return retrofit.create(NetworkService::class.java)
     }
 }
 
