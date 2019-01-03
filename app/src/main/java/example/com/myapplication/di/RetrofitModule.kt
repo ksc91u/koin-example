@@ -27,7 +27,7 @@ class RetrofitRepositoryImpl : RetrofitRepository {
     override fun giveRetrofit(okHttpClient: OkHttpClient): Retrofit {
         println(">>> giveRetrofit")
         return Retrofit.Builder()
-            .baseUrl("https://demo5730615.mockable.io/")
+            .baseUrl("https://www2.cs.ccu.edu.tw/")
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())

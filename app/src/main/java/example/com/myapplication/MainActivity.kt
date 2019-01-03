@@ -1,21 +1,35 @@
 package example.com.myapplication
 
 import android.os.Bundle
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.launch
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.android.ext.android.get
 
 class MainActivity : BaseActivity() {
 
-    private val mainViewModel: MainViewModel by viewModel()
+    private lateinit var mainViewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        mainViewModel = get()
 
-        launch {
-            val version = mainViewModel.getVersion()
-            log(">>>> result $version")
+        btn.setOnClickListener {
+            this@MainActivity.refresh()
         }
 
+        switchBtn.setOnClickListener {
+            (application as KoinApplication).refreshScope()
+            this@MainActivity.refresh()
+        }
+    }
+
+    fun refresh() {
+        mainViewModel = get()
+        launch {
+            val version = mainViewModel.getVersion()
+            textView.text = version.msg
+            log(">>>> result $version")
+        }
     }
 }
