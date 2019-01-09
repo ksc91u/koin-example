@@ -24,6 +24,12 @@ interface RetrofitRepository {
 
 class RetrofitRepositoryImpl : RetrofitRepository {
 
+    companion object {
+        const val connectionTimeout = 10L
+        const val readTimeout = 20L
+        const val writeTimeout = 40L
+    }
+
     override fun giveRetrofit(okHttpClient: OkHttpClient): Retrofit {
         println(">>> giveRetrofit")
         return Retrofit.Builder()
@@ -37,9 +43,9 @@ class RetrofitRepositoryImpl : RetrofitRepository {
     override fun giveOkHttp(): OkHttpClient {
         println(">>> giveOkHttp")
         return OkHttpClient.Builder()
-            .connectTimeout(10, TimeUnit.SECONDS)
-            .readTimeout(20, TimeUnit.SECONDS)
-            .writeTimeout(40, TimeUnit.SECONDS)
+            .connectTimeout(connectionTimeout, TimeUnit.SECONDS)
+            .readTimeout(readTimeout, TimeUnit.SECONDS)
+            .writeTimeout(writeTimeout, TimeUnit.SECONDS)
             .build()
     }
 
