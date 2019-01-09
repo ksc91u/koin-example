@@ -6,5 +6,5 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Version(
-        @SerializedName("msg") val msg: String
+    @SerializedName("msg") val msg: String
 ) : Parcelable

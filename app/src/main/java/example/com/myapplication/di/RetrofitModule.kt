@@ -7,7 +7,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-
 val retrofitModule = module {
     single { RetrofitRepositoryImpl() }
     single { get<RetrofitRepositoryImpl>().giveOkHttp() }
@@ -15,11 +14,8 @@ val retrofitModule = module {
 }
 
 interface RetrofitRepository {
-
     fun giveOkHttp(): OkHttpClient
-
     fun giveRetrofit(okHttpClient: OkHttpClient): Retrofit
-
 }
 
 class RetrofitRepositoryImpl : RetrofitRepository {
@@ -48,5 +44,4 @@ class RetrofitRepositoryImpl : RetrofitRepository {
             .writeTimeout(writeTimeout, TimeUnit.SECONDS)
             .build()
     }
-
 }

@@ -7,7 +7,6 @@ import retrofit2.Retrofit
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-
 val networkServiceModule = module {
     scope("session") { NetworkServiceRepositoryImpl(get(name = "retrofit")) }
     scope("session") { get<NetworkServiceRepositoryImpl>().giveNetworkService() }

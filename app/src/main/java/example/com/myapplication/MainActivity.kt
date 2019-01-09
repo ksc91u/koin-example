@@ -3,8 +3,6 @@ package example.com.myapplication
 import android.os.Bundle
 import io.grpc.ManagedChannel
 import io.grpc.ManagedChannelBuilder
-import io.grpc.Server
-import io.grpc.ServerBuilder
 import io.grpc.examples.helloworld.GreeterGrpc
 import io.grpc.examples.helloworld.HelloReply
 import io.grpc.examples.helloworld.HelloRequest
@@ -46,14 +44,13 @@ class MainActivity : BaseActivity() {
         val request = HelloRequest.newBuilder().setName("johnny").build()
         var response: HelloReply? = null
 
-        try{
+        try {
             response = blockingStub.sayHello(request)
-        }catch (exception : Exception){
+        } catch (exception: Exception) {
             println(">>>> exception $exception")
         }
 
         println(">>>> response ${response?.message}")
-
     }
 
     fun refresh() {

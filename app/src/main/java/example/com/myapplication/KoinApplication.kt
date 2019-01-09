@@ -7,7 +7,6 @@ import example.com.myapplication.di.viewModelModule
 import org.koin.android.ext.android.getKoin
 import org.koin.android.ext.android.startKoin
 import org.koin.core.scope.Scope
-import org.koin.standalone.KoinComponent
 
 class KoinApplication : Application() {
 
@@ -19,7 +18,7 @@ class KoinApplication : Application() {
         scope = getKoin().getOrCreateScope("session")
     }
 
-    fun refreshScope(){
+    fun refreshScope() {
         scope.close()
         scope = getKoin().getOrCreateScope("session")
     }

@@ -5,8 +5,9 @@ import example.com.myapplication.di.NetworkService
 import example.com.myapplication.di.NetworkServiceRepositoryImpl
 import kotlinx.coroutines.coroutineScope
 
-class MainViewModel(private val networkService: NetworkService,
-                    private val repo: NetworkServiceRepositoryImpl
+class MainViewModel(
+    private val networkService: NetworkService,
+    private val repo: NetworkServiceRepositoryImpl
 ) : ViewModel() {
 
     suspend fun getVersion() = coroutineScope {

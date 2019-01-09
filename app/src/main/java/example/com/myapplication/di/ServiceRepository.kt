@@ -1,5 +1,5 @@
 package example.com.myapplication.di
 
-interface ServiceRepository{
+interface ServiceRepository {
     fun provideService()
 }
