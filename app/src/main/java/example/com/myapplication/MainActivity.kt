@@ -20,7 +20,7 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        mainViewModel = get()
+        mainViewModel = (application as KoinApplication).scope.get()
 
         btn.setOnClickListener {
             this@MainActivity.refresh()
@@ -54,7 +54,7 @@ class MainActivity : BaseActivity() {
     }
 
     fun refresh() {
-        mainViewModel = get()
+        mainViewModel = (application as KoinApplication).scope.get()
         launch {
             val version = mainViewModel.getVersion()
             textView.text = version.msg

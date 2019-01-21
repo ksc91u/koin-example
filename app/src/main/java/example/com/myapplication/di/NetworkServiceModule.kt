@@ -8,8 +8,10 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 val networkServiceModule = module {
-     factory{ NetworkServiceRepositoryImpl(get()) }
-     factory{ get<NetworkServiceRepositoryImpl>().giveNetworkService() }
+    scope("session") {
+        scoped { NetworkServiceRepositoryImpl(get(name = "retrofit")) }
+        scoped { get<NetworkServiceRepositoryImpl>().giveNetworkService() }
+    }
 }
 
 interface NetworkServiceRepository {
