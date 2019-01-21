@@ -79,9 +79,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    implementation 'org.koin:koin-android:1.0.2'
-    implementation 'org.koin:koin-android-viewmodel:1.0.2'
-    implementation 'org.koin:koin-android-scope:1.0.2'
+    implementation 'org.koin:koin-android:2.0.0-alpha-6'
+    implementation 'org.koin:koin-android-viewmodel:2.0.0-alpha-6'
+    implementation 'org.koin:koin-android-scope:2.0.0-alpha-6'
     implementation 'com.squareup.okhttp3:okhttp:3.12.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
 
@@ -111,7 +111,8 @@ buildscript {
         jcenter()
         mavenCentral()
         maven {
-            url 'https://plugins.gradle.org/m2/'
+           url 'https://plugins.gradle.org/m2/'
+	   //url 'https://repo.ksc91u.info/'
         }
     }
 

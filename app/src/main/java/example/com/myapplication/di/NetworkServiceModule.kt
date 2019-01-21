@@ -2,14 +2,14 @@ package example.com.myapplication.di
 
 import example.com.myapplication.dto.Version
 import kotlinx.coroutines.Deferred
-import org.koin.dsl.module.module
+import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 val networkServiceModule = module {
-    scope("session") { NetworkServiceRepositoryImpl(get(name = "retrofit")) }
-    scope("session") { get<NetworkServiceRepositoryImpl>().giveNetworkService() }
+     factory{ NetworkServiceRepositoryImpl(get()) }
+     factory{ get<NetworkServiceRepositoryImpl>().giveNetworkService() }
 }
 
 interface NetworkServiceRepository {
