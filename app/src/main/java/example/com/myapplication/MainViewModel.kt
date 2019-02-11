@@ -12,6 +12,9 @@ class MainViewModel(
 
     suspend fun getVersion() = coroutineScope {
         //main
+        networkService.get403().await()
+//        networkService.get403a().await()
+
         networkService.getVersion(repo.name).await()
     }
 

@@ -3,6 +3,7 @@ package example.com.myapplication.di
 import example.com.myapplication.dto.Version
 import kotlinx.coroutines.Deferred
 import org.koin.dsl.module
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -33,4 +34,10 @@ class NetworkServiceRepositoryImpl(private val retrofit: Retrofit) : NetworkServ
 interface NetworkService {
     @GET("/~ksc91u/mock.php")
     fun getVersion(@Query("link") name: String): Deferred<Version>
+
+    @GET("/~ksc91u/403.php")
+    fun get403():Deferred<Response<Unit>>
+
+    @GET("/~ksc91u/403.php")
+    fun get403a():Deferred<String>
 }
