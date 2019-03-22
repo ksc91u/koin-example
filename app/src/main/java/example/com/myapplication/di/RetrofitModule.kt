@@ -2,6 +2,7 @@ package example.com.myapplication.di
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
+import org.koin.core.qualifier.StringQualifier
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -10,7 +11,7 @@ import java.util.concurrent.TimeUnit
 val retrofitModule = module {
     single { RetrofitRepositoryImpl() }
     single { get<RetrofitRepositoryImpl>().giveOkHttp() }
-    single(name = "retrofit") { get<RetrofitRepositoryImpl>().giveRetrofit(get()) }
+    single(StringQualifier("retrofit")) { get<RetrofitRepositoryImpl>().giveRetrofit(get()) }
 }
 
 interface RetrofitRepository {

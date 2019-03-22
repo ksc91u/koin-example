@@ -2,6 +2,7 @@ package example.com.myapplication.di
 
 import example.com.myapplication.dto.Version
 import kotlinx.coroutines.Deferred
+import org.koin.core.qualifier.StringQualifier
 import org.koin.dsl.module
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -9,8 +10,8 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 val networkServiceModule = module {
-    scope("session") {
-        scoped { NetworkServiceRepositoryImpl(get(name = "retrofit")) }
+    scope(StringQualifier("session")) {
+        scoped { NetworkServiceRepositoryImpl(get(StringQualifier("retrofit"))) }
         scoped { get<NetworkServiceRepositoryImpl>().giveNetworkService() }
     }
 }

@@ -9,13 +9,15 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
-import org.koin.core.scope.ScopeInstance
+import org.koin.core.qualifier.Qualifier
+import org.koin.core.qualifier.StringQualifier
+import org.koin.core.scope.Scope
 import org.koin.dsl.koinApplication
 import java.util.*
 
 class KoinApplication : Application() {
 
-    lateinit var scope: ScopeInstance
+    lateinit var scope: Scope
     override fun onCreate() {
         super.onCreate()
         startKoin {
@@ -23,11 +25,11 @@ class KoinApplication : Application() {
             androidContext(this@KoinApplication)
             modules(retrofitModule, networkServiceModule, viewModelModule)
         }
-        scope = getKoin().createScope("scope id", "session" )
+        scope = getKoin().createScope("scope id", StringQualifier("session") )
     }
 
     fun refreshScope() {
         scope.close()
-        scope = getKoin().createScope("scope id " + Random().nextInt() , "session" )
+        scope = getKoin().createScope("scope id " + Random().nextInt() , StringQualifier("session") )
     }
 }
